@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Collections.Generic;
+using System.Xml.Linq;
 
 namespace GenericEmployee;
 
@@ -58,9 +59,7 @@ internal class Program
         // print out all employees in the stack 
         foreach (Employee element in employeeStack)
         {
-            Console.WriteLine(" ");
-            Console.WriteLine($"Id: {element.Id}\nNamn: {element.Name}\nKön: {element.Gender}\nSaldo: {element.Salery}");
-            Console.WriteLine($"kvar i stacken är: {employeeStack.Count()} \n"); // counting how many is in the stack
+            PrintEmployee(element, employeeStack);
         }
 
         Console.WriteLine("-----pop metoden-----");
@@ -71,9 +70,9 @@ internal class Program
         {
             // using the pop method to remove every employee untill its empty
             Employee topEmp = employeeStack.Pop(); 
-            Console.WriteLine(" ");
-            Console.WriteLine($"Id: {topEmp.Id}\nNamn: {topEmp.Name}\nKön: {topEmp.Gender}\nSaldo: {topEmp.Salery}");
-            Console.WriteLine($"kvar i stacken är: {employeeStack.Count()}\n "); // counting down until it's empty
+
+             // counting down until it's empty
+            PrintEmployee(topEmp, employeeStack);
         }
 
         Console.WriteLine("-----peek metoden-----");
@@ -89,8 +88,8 @@ internal class Program
         Employee peekEmp = employeeStack.Peek();
 
         // print out the first employee in the stack
-        Console.WriteLine($"Id: {peekEmp.Id}\nNamn: {peekEmp.Name}\nKön: {peekEmp.Gender}\nSaldo: {peekEmp.Salery}");
-        Console.WriteLine($"kvar i stacken är: {employeeStack.Count()}\n ");
+        PrintEmployee(peekEmp, employeeStack);
+
 
         // removes one employee 
         employeeStack.Pop();
@@ -99,8 +98,7 @@ internal class Program
         Employee peekEmp1 = employeeStack.Peek();
 
         // print out the new employee 
-        Console.WriteLine($"Id: {peekEmp1.Id}\nNamn: {peekEmp1.Name}\nKön: {peekEmp1.Gender}\nSaldo: {peekEmp1.Salery}");
-        Console.WriteLine($"kvar i stacken är: {employeeStack.Count()}\n ");
+        PrintEmployee(peekEmp1, employeeStack);
 
         // check if employee 3 is in the stack and prints out answer
         if (employeeStack.Contains(employee3))
@@ -161,5 +159,13 @@ internal class Program
         {
             Console.WriteLine($"\nId: {male.Id}\nNamn: {male.Name}\nKön: {male.Gender}\nSaldo: {male.Salery}");
         }
+    }
+
+    // method to print out the employees 
+    private static void PrintEmployee(Employee employee, Stack<Employee> employeeStack)
+    {
+        Console.WriteLine(" ");
+        Console.WriteLine($"Id: {employee.Id}\nNamn: {employee.Name}\nKön: {employee.Gender}\nSaldo: {employee.Salery}");
+        Console.WriteLine($"kvar i stacken är: {employeeStack.Count()} \n"); // counting how many is in the stack
     }
 }
